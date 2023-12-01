@@ -14,6 +14,7 @@
       <list>
         <option value="$MODULE_DIR$/KdnTools/Projects/Magic8Ball_Website/templates" />
         <option value="$MODULE_DIR$/KdnTools/Projects/Calculator_Website/templates" />
+        <option value="$MODULE_DIR$/KdnTools/Projects/Messaging_Website/templates" />
       </list>
     </option>
   </component>
