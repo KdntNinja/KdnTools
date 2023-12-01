@@ -1,1 +1,1 @@
-from .magic8ball import Magic8Ball
+from .main import Magic8Ball

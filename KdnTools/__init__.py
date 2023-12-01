@@ -10,4 +10,4 @@ from KdnTools.Tools.User import User
 
 from KdnTools.Projects.EmailValidator import EmailValidator
 from KdnTools.Projects.Magic8Ball_Website import Magic8Ball
-from KdnTools.Projects.Lang import run
+from KdnTools.Projects.Calculator_Website import Calculator

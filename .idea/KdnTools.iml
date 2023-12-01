@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="G:\IDE\Languages\Python\python.exe" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-3.3.1.slim" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="versionSpecifier" value="Greater or equal (&gt;=x.y.z)" />
@@ -12,6 +13,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/KdnTools/Projects/Magic8Ball_Website/templates" />
+        <option value="$MODULE_DIR$/KdnTools/Projects/Calculator_Website/templates" />
       </list>
     </option>
   </component>

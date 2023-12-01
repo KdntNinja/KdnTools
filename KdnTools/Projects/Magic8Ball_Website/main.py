@@ -36,7 +36,7 @@ class Magic8Ball:
         return f"Question: {question}\n\nAnswer: {self.shake()}"
 
     @staticmethod
-    def run_website(self):
+    def run_website():
         app.run(debug=True)
 
 
@@ -48,3 +48,6 @@ def home():
         answer = magic8ball.ask(question)
         return render_template('result.html', question=question, answer=answer)
     return render_template('home.html')
+
+
+Magic8Ball.run_website()

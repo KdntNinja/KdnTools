@@ -1,1 +1,1 @@
-from .EmailValidator import EmailValidator
+from .main import EmailValidator
