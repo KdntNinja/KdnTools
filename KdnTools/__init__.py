@@ -8,4 +8,6 @@ from KdnTools.Tools.String import String
 from KdnTools.Tools.Lists import List
 from KdnTools.Tools.User import User
 
+from EmailValidator import EmailValidator
+from Magic8Ball import Magic8Ball
 from KdnTools.Lang import run

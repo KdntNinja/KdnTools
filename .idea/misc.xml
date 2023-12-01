@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" project-jdk-name="G:\IDE\Languages\Python\python.exe" project-jdk-type="Python SDK" />
+  <component name="Black">
+    <option name="sdkName" value="E:\IDE\Languages\Python\python.exe" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="E:\IDE\Languages\Python\python.exe" project-jdk-type="Python SDK" />
 </project>
