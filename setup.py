@@ -21,7 +21,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.10,<3.13",
-    install_requires=["prettytable", "colorama", "requests", "matplotlib", "numpy", "tqdm"],
+    install_requires=Path("requirements.txt").read_text().splitlines(),
     packages=find_packages(),
     include_package_data=True,
 )

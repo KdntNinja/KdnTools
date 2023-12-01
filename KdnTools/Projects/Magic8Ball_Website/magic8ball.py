@@ -1,6 +1,7 @@
+from flask import Flask, render_template, request
 from random import randint
-from time import sleep
-from tqdm import tqdm
+
+app = Flask(__name__)
 
 
 class Magic8Ball:
@@ -32,19 +33,18 @@ class Magic8Ball:
         return self.answers[randint(0, len(self.answers) - 1)]
 
     def ask(self, question):
-        return f"Question: {question}\nAnswer: {self.shake()}"
+        return f"Question: {question}\n\nAnswer: {self.shake()}"
 
     @staticmethod
-    def thinking():
-        for _ in tqdm(range(100), desc="Thinking", ascii=False, ncols=75):
-            sleep(0.01)
+    def run_website(self):
+        app.run(debug=True)
 
-    def run(self):
-        while True:
-            question = input("What is your question? ")
-            if question == "exit":
-                break
-            self.thinking()
-            print("\n")
-            print(self.ask(question))
-            print("\n")
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == 'POST':
+        question = request.form.get('question')
+        magic8ball = Magic8Ball()
+        answer = magic8ball.ask(question)
+        return render_template('result.html', question=question, answer=answer)
+    return render_template('home.html')

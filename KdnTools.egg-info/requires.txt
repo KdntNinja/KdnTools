@@ -1,5 +1,0 @@
-prettytable
-colorama
-requests
-matplotlib
-numpy
