@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from random import randint
+import sqlite3
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ class Magic8Ball:
             "Better not tell you now",
             "Cannot predict now",
             "Concentrate and ask again",
-            "Don"t count on it",
+            "Don't count on it",
             "My reply is no",
             "My sources say no",
             "Outlook not so good",
@@ -36,15 +37,31 @@ class Magic8Ball:
         return f"Question: {question}\n\nAnswer: {self.shake()}"
 
     @staticmethod
-    def run_website():
+    def run_website(self):
         app.run(debug=True)
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == "POST":
-        question = request.form.get("question")
+    conn = sqlite3.connect('question.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS questions
+                 (question text)''')
+
+    if request.method == 'POST':
+        question = request.form.get('question')
         magic8ball = Magic8Ball()
         answer = magic8ball.ask(question)
-        return render_template("result.html", question=question, answer=answer)
-    return render_template("home.html")
+
+        c.execute("INSERT INTO questions VALUES (?)", (question,))
+        conn.commit()
+
+        return render_template('result.html', question=question, answer=answer)
+
+    conn.close()
+
+    return render_template('home.html')
+
+
+if __name__ == '__main__':
+    Magic8Ball.run_website(Magic8Ball)
