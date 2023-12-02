@@ -1,12 +1,12 @@
-TT_INT = 'INT'
-TT_FLOAT = 'FLOAT'
-TT_PLUS = 'PLUS'
-TT_MINUS = 'MINUS'
-TT_MUL = 'MUL'
-TT_DIV = 'DIV'
-TT_LPAREN = 'LPAREN'
-TT_RPAREN = 'RPAREN'
-TT_EOF = 'EOF'
+TT_INT = "INT"
+TT_FLOAT = "FLOAT"
+TT_PLUS = "PLUS"
+TT_MINUS = "MINUS"
+TT_MUL = "MUL"
+TT_DIV = "DIV"
+TT_LPAREN = "LPAREN"
+TT_RPAREN = "RPAREN"
+TT_EOF = "EOF"
 
 
 class Token:
@@ -23,5 +23,5 @@ class Token:
             self.pos_end = pos_end
 
     def __repr__(self):
-        if self.value: return f'{self.type}:{self.value}'
-        return f'{self.type}'
+        if self.value: return f"{self.type}:{self.value}"
+        return f"{self.type}"

@@ -22,7 +22,7 @@ class Magic8Ball:
             "Better not tell you now",
             "Cannot predict now",
             "Concentrate and ask again",
-            "Don't count on it",
+            "Don"t count on it",
             "My reply is no",
             "My sources say no",
             "Outlook not so good",
@@ -40,14 +40,11 @@ class Magic8Ball:
         app.run(debug=True)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/", methods=["GET", "POST"])
 def home():
-    if request.method == 'POST':
-        question = request.form.get('question')
+    if request.method == "POST":
+        question = request.form.get("question")
         magic8ball = Magic8Ball()
         answer = magic8ball.ask(question)
-        return render_template('result.html', question=question, answer=answer)
-    return render_template('home.html')
-
-
-Magic8Ball.run_website()
+        return render_template("result.html", question=question, answer=answer)
+    return render_template("home.html")

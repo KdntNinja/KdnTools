@@ -1,3 +1,4 @@
+from flask import Flask, request, render_template, jsonify
 import asyncio
 import aiodns
 import logging
@@ -8,19 +9,19 @@ import collections.abc as abc
 
 
 class EmailValidator:
-    EMAIL_REGEX = r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)'
+    EMAIL_REGEX = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
     MX_DNS_CACHE = {}
     MX_CHECK_CACHE = {}
 
     def __init__(self):
-        self.setup_module_logger('verify_email')
+        self.setup_module_logger("verify_email")
 
     @staticmethod
     def setup_module_logger(name):
         logger = logging.getLogger(name)
         ch = logging.StreamHandler()
         formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         )
         ch.setFormatter(formatter)
         logger.addHandler(ch)
@@ -33,13 +34,13 @@ class EmailValidator:
         if hostname not in self.MX_DNS_CACHE:
             try:
                 resolver = aiodns.DNSResolver()
-                self.MX_DNS_CACHE[hostname] = await resolver.query(hostname, 'MX')
-            except aiodns.error.DNSError as e:
+                self.MX_DNS_CACHE[hostname] = await resolver.query(hostname, "MX")
+            except aiodns.error.DNSError:
                 self.MX_DNS_CACHE[hostname] = None
         return self.MX_DNS_CACHE[hostname]
 
     async def get_mx_hosts(self, email):
-        hostname = email[email.find('@') + 1:]
+        hostname = email[email.find("@") + 1:]
         if hostname in self.MX_DNS_CACHE:
             mx_hosts = self.MX_DNS_CACHE[hostname]
         else:
@@ -72,7 +73,7 @@ class EmailValidator:
 
     def validate(self, emails, timeout=None, verify=True, debug=False):
         if debug:
-            logger = logging.getLogger('verify_email')
+            logger = logging.getLogger("verify_email")
             logger.setLevel(logging.DEBUG)
         result = []
         if not self.is_list(emails):
@@ -89,35 +90,55 @@ class EmailValidator:
 
     @staticmethod
     async def network_calls(mx, email, timeout=20):
-        logger = logging.getLogger('verify_email')
+        logger = logging.getLogger("verify_email")
         result = False
         try:
             smtp = smtplib.SMTP(mx.host, timeout=timeout)
             status, _ = smtp.ehlo()
             if status >= 400:
                 smtp.quit()
-                logger.debug(f'{mx} answer: {status} - {_}\n')
+                logger.debug(f"{mx} answer: {status} - {_}\n")
                 return False
-            smtp.mail('')
+            smtp.mail("")
             status, _ = smtp.rcpt(email)
             if status >= 400:
-                logger.debug(f'{mx} answer: {status} - {_}\n')
+                logger.debug(f"{mx} answer: {status} - {_}\n")
                 result = False
             if 200 <= status <= 250:
                 result = True
 
-            logger.debug(f'{mx} answer: {status} - {_}\n')
+            logger.debug(f"{mx} answer: {status} - {_}\n")
             smtp.quit()
 
         except smtplib.SMTPServerDisconnected:
-            logger.debug(f'Server does not permit verify user, {mx} disconnected.\n')
+            logger.debug(f"Server does not permit verify user, {mx} disconnected.\n")
         except smtplib.SMTPConnectError:
-            logger.debug(f'Unable to connect to {mx}.\n')
+            logger.debug(f"Unable to connect to {mx}.\n")
         except socket.timeout as e:
-            logger.debug(f'Timeout connecting to server {mx}: {e}.\n')
+            logger.debug(f"Timeout connecting to server {mx}: {e}.\n")
             return None
         except socket.error as e:
-            logger.debug(f'ServerError or socket.error exception raised {e}.\n')
+            logger.debug(f"ServerError or socket.error exception raised {e}.\n")
             return None
 
         return result
+
+    def run_website(self):
+        app = Flask(__name__, static_folder="static", template_folder="templates")
+
+        @app.route("/validate", methods=["POST"])
+        def validate_email():
+            data = request.get_json()
+            email = data["email"]
+            validated_result = self.validate([email])
+            return jsonify({"result": validated_result})
+
+        @app.route("/")
+        def index():
+            return render_template("index.html")
+
+        app.run(debug=True)
+
+
+if __name__ == "__main__":
+    EmailValidator().run_website()

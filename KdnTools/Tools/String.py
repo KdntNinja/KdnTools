@@ -49,7 +49,7 @@ class String:
 
         @staticmethod
         def is_palindrome(input_string):
-            cleaned_str = ''.join(char.lower() for char in input_string if char.isalnum())
+            cleaned_str = "".join(char.lower() for char in input_string if char.isalnum())
             return cleaned_str == cleaned_str[::-1]
 
         def __str__(self):
@@ -65,7 +65,9 @@ class String:
             return input_string.count(substring)
 
         def __str__(self):
-            return f"Occurrences of '{self.substring}': {self.count_substring(self.input_string, self.substring)}"
+            return f"Occurrences of "
+            {self.substring}
+            ": {self.count_substring(self.input_string, self.substring)}"
 
     class ReverseWords:
         def __init__(self, input_string):
@@ -74,7 +76,7 @@ class String:
         @staticmethod
         def reverse_words(input_string):
             words = input_string.split()
-            reversed_words = ' '.join(word[::-1] for word in words)
+            reversed_words = " ".join(word[::-1] for word in words)
             return reversed_words
 
         def __str__(self):

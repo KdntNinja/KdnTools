@@ -8,3 +8,4 @@ KdnTools>=1.8.1
 setuptools>=68.2.2
 ping3>=4.0.4
 aiodns>=3.1.1
+werkzeug>=3.0.0

@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 from pathlib import Path
 
 setup(
-    name='KdnTools',
-    version='1.9.0',
+    name="KdnTools",
+    version="1.9.0",
     description="Useful tools for every project.",
     long_description=Path("README.md").read_text(),
     long_description_content_type="text/markdown",

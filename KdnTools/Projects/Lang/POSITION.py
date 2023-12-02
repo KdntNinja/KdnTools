@@ -10,7 +10,7 @@ class Position:
         self.idx += 1
         self.col += 1
 
-        if current_char == '\n':
+        if current_char == "\n":
             self.ln += 1
             self.col = 0
 

@@ -2,7 +2,9 @@
 
 ## Description
 
-KdnTools is a Python package that provides a collection of useful tools for common tasks in Python development. Whether you're working with databases, handling user interactions, or performing various operations, KdnTools aims to simplify and enhance your coding experience.
+KdnTools is a Python package that provides a collection of useful tools for common tasks in Python development. Whether
+you"re working with databases, handling user interactions, or performing various operations, KdnTools aims to simplify
+and enhance your coding experience.
 
 ## Features
 
@@ -14,7 +16,7 @@ KdnTools is a Python package that provides a collection of useful tools for comm
 
 - **Word Count**: Allows you to count the number of words in a given string.
 
-- **Drive Letter**: Retrieves the drive letter of the script's directory.
+- **Drive Letter**: Retrieves the drive letter of the script"s directory.
 
 - **Tasks Management (Example)**: An example module showcasing how to use KdnTools for managing tasks with a SQLite database.
 
@@ -66,7 +68,7 @@ db_manager.remove_data(table_name="users", condition="age > 30")
 
 ## DriveLetter
 
-The DriveLetter class retrieves the drive letter of the script's directory.
+The DriveLetter class retrieves the drive letter of the script"s directory.
 
 print(f"Drive Letter: {DriveLetter()}")
 
@@ -153,7 +155,7 @@ substring = "Kdn"
 
 count_substring = str(String.SubstringCount(input_str, substring))
 
-print(f"Occurrences of '{substring}': {count_substring}")
+print(f"Occurrences of "{substring}": {count_substring}")
 
 ### ReverseWords
 

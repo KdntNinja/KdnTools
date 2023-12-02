@@ -12,8 +12,8 @@ function move() {
             }, 500); // delay the form submission by 500ms
         } else {
             width += 5;
-            elem.style.width = width + '%';
-            label.textContent = width + '%';
+            elem.style.width = width + "%";
+            label.textContent = width + "%";
         }
     }
 }

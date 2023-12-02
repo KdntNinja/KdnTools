@@ -3,7 +3,7 @@ class NumberNode:
         self.tok = tok
 
     def __repr__(self):
-        return f'{self.tok}'
+        return f"{self.tok}"
 
 
 class BinOpNode:
@@ -13,7 +13,7 @@ class BinOpNode:
         self.right_node = right_node
 
     def __repr__(self):
-        return f'({self.left_node}, {self.op_tok}, {self.right_node})'
+        return f"({self.left_node}, {self.op_tok}, {self.right_node})"
 
 
 class UnaryOpNode:
@@ -22,4 +22,4 @@ class UnaryOpNode:
         self.node = node
 
     def __repr__(self):
-        return f'({self.op_tok}, {self.node})'
+        return f"({self.op_tok}, {self.node})"

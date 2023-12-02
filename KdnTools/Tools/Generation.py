@@ -38,7 +38,7 @@ class Generation:
         Returns:
         - None: Displays the plot.
         """
-        plt.imshow(noise_values, cmap='viridis', origin='lower')
+        plt.imshow(noise_values, cmap="viridis", origin="lower")
         plt.colorbar()
         plt.show()
 
@@ -62,7 +62,7 @@ class Generation:
         noise_values = [[[noise([i / scale, j / scale, k / scale]) for k in range(depth)] for j in range(height)] for i in range(width)]
 
         fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')
+        ax = fig.add_subplot(111, projection="3d")
         x, y, z = np.meshgrid(range(width), range(height), range(depth))
-        ax.scatter(x, y, z, c=noise_values, cmap='viridis', marker='.')
+        ax.scatter(x, y, z, c=noise_values, cmap="viridis", marker=".")
         plt.show()

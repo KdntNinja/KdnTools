@@ -7,9 +7,9 @@ class DataFetcher:
         self.api_key = api_key
 
     def _get_headers(self):
-        headers = {'Content-Type': 'application/json'}
+        headers = {"Content-Type": "application/json"}
         if self.api_key:
-            headers['Authorization'] = f'Bearer {self.api_key}'
+            headers["Authorization"] = f"Bearer {self.api_key}"
         return headers
 
     def fetch_data(self, endpoint, params=None):

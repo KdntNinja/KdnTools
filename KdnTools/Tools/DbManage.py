@@ -45,11 +45,13 @@ class DbTools:
         column_definitions = ", ".join([f"{col_name} {col_type}" for col_name, col_type in columns.items()])
         query = f"CREATE TABLE IF NOT EXISTS {self.table_name} ({column_definitions})"
         self.execute_query(query)
-        info(f"Table '{self.table_name}' created")
+        info(f"Table "
+        {self.table_name}
+        " created")
 
     def insert_data(self, data):
-        placeholders = ', '.join(['?'] * len(data))
-        columns = ', '.join(data.keys())
+        placeholders = ", ".join(["?"] * len(data))
+        columns = ", ".join(data.keys())
         values = list(data.values())
 
         query = f"INSERT INTO {self.table_name} ({columns}) VALUES ({placeholders})"
