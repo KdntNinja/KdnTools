@@ -3,7 +3,7 @@ from pathlib import Path
 
 setup(
     name="KdnTools",
-    version="1.9.0",
+    version="1.9.1",
     description="Useful tools for every project.",
     long_description=Path("README.md").read_text(),
     long_description_content_type="text/markdown",
